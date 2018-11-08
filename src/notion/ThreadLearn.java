@@ -14,6 +14,8 @@ public class ThreadLearn {
 		t2.setName("方式二");
 		t2.start();
 		
+		// Callable 等...
+		
 		// 暂停休眠的几种方法
 		// 一、staic sleep(s, ns)：不释放资源，指定时间后回到就绪队列
 		try {
@@ -31,7 +33,8 @@ public class ThreadLearn {
 			e.printStackTrace();
 		}
 		
-		// 四、wait：释放对象锁，等待其他线程调用锁对象的 notify/notifyAll 方法
+		// 四、wait：线程释放对象锁，进入 lockObject 的等待池
+		// 查看 SynchronizedTest 了解机制
 		Object lockObject = new Object();
 		synchronized(lockObject) {
 			boolean condition = true; // 当发生某种情况的时候释放锁，进入等待状态
@@ -68,11 +71,11 @@ class ThreadDemo extends Thread {
 
 // volatile 关键字保证可见性、有序性
 // 可见性：一个线程读取变量然后修改会马上更新到内存，另一个线程如果事先已经读取了变量，
-// 然后要进行修改，就会被告缓存无效，得重新从主存读取变量
+// 然后要进行修改，就会被告工作内存无效，得重新从主存读取变量
 // 有序性：保证 JVM 不会对变量的指令进行重排序
 // 但不保证原子性：读写原子性。一个线程 A 读取但不修改被阻塞，另一个线程 B 修改值，
 // 此时进程 A 阻塞结束进行修改，因为在线程 B 修改的时候 A 阻塞且没有想要修改值的意思
-// 所以线程 A 的高速缓存依旧有效，此时 A 线程再去修改变量就会出现数据不一致的问题
+// 所以线程 A 的工作内存依旧有效，此时 A 线程再去修改变量就会出现数据不一致的问题
 
 // inc 最终总是小于 1W
 class VolatileTest {
