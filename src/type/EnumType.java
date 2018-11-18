@@ -1,4 +1,4 @@
-package notion;
+package type;
 
 // The member enum Hi can only be defined inside a top-level class or interface or in a static context
 // 枚举类型只能定义在类 / 接口的顶部，或在静态上下文里
@@ -13,7 +13,8 @@ enum Color {
 // 编译后的结果是：class Color extends Enum { ... }
 // 所以我们通过 Color.RED 实际上是
 // 获取 Color 类上的静态成员 RED 对象
-// 而 RED 对象是通过  new RED("RED") 得来的
+// 而 RED 对象是通过  new Color("RED") 得来的
+// 所以你可以 Color.RED.RED.RED...
 
 // 以下每个枚举值其实是通过 new Gender 得来
 // 所以枚举值后的参数要和构造方法的参数一致
@@ -64,7 +65,7 @@ enum Singleton {
 		this.name = name;
 	}
 }
-public class Enum {
+public class EnumType {
 	public static void main(String[] args) {
 		
 		// 通过 name 方法和通过 toString 方法获得枚举值是等价的

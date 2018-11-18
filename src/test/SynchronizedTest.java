@@ -1,8 +1,8 @@
 package test;
 
 // 为了便于理解，我们假设锁放在挂壁上
-// 等待池：一个与世无争的小黑屋
-// 竞争池：挂壁前面，一旦有锁就去抢
+// 等待池：一个与世无争的小黑屋(等待阻塞状态)
+// 竞争池：挂壁前面，一旦有锁就去抢（同步阻塞状态）
 
 // 进入等待池的方法：持有锁的情况下调用 wait 方法主动让出锁
 
@@ -29,6 +29,8 @@ public class SynchronizedTest {
 	}
 }
 
+// wait、notify/notifyAll 都只能在 synchronized 块内被调用，
+// 不能随便调用，否则会抛出异常
 class WaitThread extends Thread {
 	Object lock;
 	String name;
@@ -51,7 +53,6 @@ class WaitThread extends Thread {
 					// 先睡一秒
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println(name + "输出了: " + i);

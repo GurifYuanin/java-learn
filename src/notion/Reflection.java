@@ -11,6 +11,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.EnumMap;
 
+
+enum Color {
+	RED, GREEN, BLUE
+}
+
 public class Reflection {
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
 //		MyClass mc = new MyClass();
